@@ -69,7 +69,6 @@ gem "refile-mini_magick"
 
 gem 'pry-byebug'
 gem "bulma-rails"
-gem 'bootstrap-sass', '~> 3.2.0'
 
 gem 'dotenv-rails'
 group :production do
