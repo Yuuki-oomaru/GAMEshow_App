@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap-sprockets";  /*ここを追加*/
+ @import "bootstrap";            /*ここを追加*/
+ // @import "bulma";
+ *{
+   margin:0;
+   padding: 0;
+ }
+
+ .item{
+   width: 100%;
+   height: 300px;
+ }
+
+.my-image{
+  border-radius: 50%;
+}

@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7">
+			<div style="border-radius: 50px;">
+        <%= attachment_image_tag @user, :profile_image, format:"jpg", fallback:"no_image.png", class:"my-image" %>
+			</div>
+		</div>
+		<div class="col-lg-5">
+			<p style="font-size: 30px"><%= @user.name %></p>
+			<p style="font-size: 20px"><%= simple_format @user.introduction %></p>
+		</div>
+	</div>
+	<div style="float: right">
+		<div class="col-auto">
+			 <% if @user.id == current_user.id %>
+       <%= link_to "編集", edit_user_path(@user), class: "btn btn-lg btn-success" %>
+       <% end %>
+		</div>
+	</div>
+</div>

@@ -7,9 +7,41 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
   <body>
+    <header>
+      <div class="container">
+
+        <nav class="nav navbar-nav navbar-left">
+          <h3>GAMEshow</h3>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <!--if文でサインインとアウト時の表示を変更-->
+            <% if user_signed_in? %>
+            <li><%= link_to ' マイページ', user_path(current_user), class: 'glyphicon glyphicon-home home' %></li>
+            <li><%= link_to ' users', users_path, class: 'glyphicon glyphicon-user users' %></li>
+            <li><%= link_to ' games', games_path, class: 'glyphicon glyphicon-book books' %></li>
+            <li><%= link_to ' logout', destroy_user_session_path, method: :delete, class: 'glyphicon glyphicon-log-out logout' %></li>
+            <% else %>
+            <li><%= link_to ' home', "/", class: 'glyphicon glyphicon-home home' %></li>
+            <li><%= link_to ' about', "#", class: 'glyphicon glyphicon-link about' %></li>
+            <li><%= link_to ' sign up', new_user_registration_path, class: 'glyphicon glyphicon-edit sign_up' %></li>
+            <li><%= link_to ' login', new_user_session_path, class: 'glyphicon glyphicon-log-in sign_in' %></li>
+            <% end %>
+          </ul>
+        </nav>
+
+      </div>
+    </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

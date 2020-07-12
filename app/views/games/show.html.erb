@@ -1,0 +1,36 @@
+<div class="container">
+   <div class="row">
+      <div class="col-md-8 col-sm-offset-2">
+          <div class="masonry-block">
+              <div class="block-image">
+                <%= attachment_image_tag @game, :game_image, format:"jpg", fallback:"no_image.png" %>
+              </div>
+              <div class="block-content">
+                <h3>
+                  <i>
+                    タイトル<br /><%= @game.title %>
+                  </i>
+                </h3>
+                <h4>
+                  <i>
+                    コメント<br />
+                    <%= simple_format @game.body %>
+                  </i>
+                </h4>
+                  <li style="font-size: 17px">
+                    By<%= @game.user.name %>
+                  </li>
+                  <li class="fovarites">
+                    <%= render 'favorites/favorites', game: @game %>
+                  </li>
+                <div style="float: right">
+                  <% if @game.user.id == current_user.id %>
+                    <%= link_to "編集画面へ", edit_game_path(@game), class: "btn btn-lg btn-success" %>
+                    <%= link_to "削除", @game, method: :delete, class:"btn btn-lg btn-danger" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+         </div>
+    </div>
+</div>
