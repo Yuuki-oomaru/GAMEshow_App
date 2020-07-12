@@ -69,3 +69,8 @@ gem "refile-mini_magick"
 
 gem 'pry-byebug'
 gem "bulma-rails"
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
