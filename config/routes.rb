@@ -9,9 +9,10 @@ Rails.application.routes.draw do
    delete "sign_out", :to => "users/sessions#destroy"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  end
- 
+  get 'message/:id' => 'messages#show', as:'message'
   get 'users/index'
   get "/" => "homes#top"
+  resources :messages, only: [:create]
   resources :users
   resources :games do
     resource :favorites, only: [:create, :destroy]

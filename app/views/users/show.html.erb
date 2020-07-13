@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-lg-7">
 			<div style="border-radius: 50px;">
-        <%= attachment_image_tag @user, :profile_image, format:"jpg", fallback:"no_image.png", class:"my-image" %>
+				<%= attachment_image_tag @user, :profile_image, format:"jpg", fallback:"no_image.png", class:"my-image" %>
 			</div>
 		</div>
 		<div class="col-lg-5">
@@ -12,9 +12,36 @@
 	</div>
 	<div style="float: right">
 		<div class="col-auto">
-			 <% if @user.id == current_user.id %>
-       <%= link_to "編集", edit_user_path(@user), class: "btn btn-lg btn-success" %>
-       <% end %>
+			<% if @user.id == current_user.id %>
+				<%= link_to "編集", edit_user_path(@user), class: "btn btn-lg btn-success" %>
+			<% else %>
+				<%= link_to 'chatを始める', message_path(@user.id), class: "btn btn-lg btn-success" %>
+			<% end %>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div calss="col-lg-5 col-sm-offset-5">
+			<h2>Games</h2>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Name</th>
+						<th>Title</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @user.games.each do |game| %>
+						<tr>
+							<td></td>
+							<td><%= link_to game.title, game_path(game) %></td>
+							<td><%= game.title %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>

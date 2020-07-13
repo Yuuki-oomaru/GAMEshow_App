@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
- // @import "bootstrap-sprockets";  /*ここを追加*/
+ @import "bootstrap-sprockets";  /*ここを追加*/
  @import "bootstrap";            /*ここを追加*/
  // @import "bulma";
  *{
@@ -28,4 +28,6 @@
 
 .my-image{
   border-radius: 50%;
+  width: 50%;
+  height: 50%;
 }

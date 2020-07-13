@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div>
+        <h1><%= @user.name %>さんとのチャット</h1>
+      </div>
+      <div class="message_<%= @room.id %>">
+        <%= render "message", message: @messages %>
+      </div>
+      <h3>
+        <span class="input-title">New Message</span></h3>
+          <%= form_with model: @message, data: {remote: true} do |f| %>
+            <%= f.text_field :message %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit "Message", class:"btn btn-warning" %>
+          <% end %>
+    </div>
+  </div>
+</div>
