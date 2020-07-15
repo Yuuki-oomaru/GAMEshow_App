@@ -11,7 +11,10 @@ Rails.application.routes.draw do
  end
   get 'message/:id' => 'messages#show', as:'message'
   get 'users/index'
-  get "/" => "homes#top"
+  get 'tags/:tag', to: 'games#index', as: :tag
+  get "/" => "homes#index"
+  get "/about" => "homes#show"
+  post '/homes/guest_sign_in', to: 'homes#new_guest'
   resources :messages, only: [:create]
   resources :users
   resources :games do

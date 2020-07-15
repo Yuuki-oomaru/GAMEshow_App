@@ -1,6 +1,10 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.all
+    if params[:tag]
+      @games = Game.tagged_with(params[:tag])
+    else
+      @games = Game.all
+    end
     @game = Game.new
   end
 
@@ -36,6 +40,6 @@ class GamesController < ApplicationController
 
   private
    def game_params
-     params.require(:game).permit(:title, :body, :game_image)
+     params.require(:game).permit(:title, :body, :game_image, :tag_list)
    end
 end
