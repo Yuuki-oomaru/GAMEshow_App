@@ -1,0 +1,2 @@
+$(".comment_<%= @game.id %>").html("<%= j(render 'games/comment', game_comments: @game_comments ) %>");
+$("textarea").val("");

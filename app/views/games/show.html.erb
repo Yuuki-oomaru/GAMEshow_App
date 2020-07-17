@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-lg-8">
       <%= attachment_image_tag @game, :game_image, format:"jpg", fallback:"no_image.png", class:"image" %>
     </div>
     <div class="col-lg-4">
@@ -13,8 +13,11 @@
         <font size="5"><%= simple_format @game.body %></font>
       </p>
       <div>
+        <h3>tags</h3>
         <p><%= @game.tag_list %></p>
-        <p><font size="5">By<%= @game.user.name %></font></p>
+        <p>
+          <font size="5">By<%= link_to @game.user.name, user_path(@game.user_id) %></font>
+        </p>
         <p class="fovarites">
           <%= render 'favorites/favorites', game: @game %>
         </p>
@@ -27,4 +30,32 @@
       <% end %>
     </div>
   </div>
+  <h2>コメント</h2>
+  <div class="comment_<%= @game.id %>">
+    <%= render "comment", game_comments: @game_comments %>
+  </div>
+
+  <h2>New Comment</h2>
+
+  <%= form_with model:[@game,@game_comment],remote: true do |f| %>
+  <div class="field">
+    <%= f.text_area :comment, rows:"3", class:"form-control input-sm" %>
+    <%= f.label :rate, "星評価 " ,id: "e"%>
+    <%= f.hidden_field :rate, id: :review_star %>
+  </div>
+  <div class="field input-btn">
+    <%= f.submit "newcomment", class:"btn btn-warning btn-block" %>
+  </div>
+<% end %>
 </div>
+
+<script>
+$('#star').raty({
+  size     : 36,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  starHalf: "<%= asset_path('star-half.png') %>",
+  scoreName: 'comment[rate]',
+  half: true //★の半分の入力を行う
+});
+</script>

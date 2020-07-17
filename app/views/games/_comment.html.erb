@@ -1,0 +1,25 @@
+<% if flash[:comment] %>
+  <div class="flash"><%= flash[:comment]%></div>
+<% end %>
+<% @game.game_comments.each do |game_comment| %>
+  <div class="content-block flex">
+    <div class="profile-content">
+      <%= attachment_image_tag game_comment.user, :profile_image, format:"jpg", size:"100x100", fallback:"no_image.png", class:"profile-image" %>
+    </div>
+    <div class="text-content">
+      <span class="title-text">
+        <%= game_comment.user.name %><br>
+      </span>
+      <span class="body-text">
+        <%= game_comment.comment %>
+      </span><br>
+      <div class="action-text">
+        <%= game_comment.created_at.strftime('%Y/%m/%d') %>
+        <% if game_comment.user == current_user %>
+          <%= link_to "削除", game_game_comment_path(@game, game_comment),method: :delete, remote: true %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div style="border-bottom: 1px solid silver"></div>
+<% end %>

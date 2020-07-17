@@ -1,3 +1,25 @@
 // Place all the styles related to the messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.my_message{
+	text-align: right;
+	padding-left: 40%;
+}
+
+.my_message .chat{
+	border-bottom: 1px solid red;
+	padding-bottom: 3px;
+	margin-bottom: 1rem;
+}
+
+.user_message{
+	text-align: left;
+	padding-right: 40%;
+}
+
+.chat{
+	word-break: break-all;
+}
+.profile_image{
+  border-radius: 50%;
+}

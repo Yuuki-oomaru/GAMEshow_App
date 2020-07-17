@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <% @users.each do |user| %>
-      <div class="col-xs-4">
+      <div class="col-lg-4">
         <%= attachment_image_tag user, :profile_image, format:"jpg", fallback:"no_image.png", :size => '350x300', class:"icon" %>
         <p><font size="5"><%= user. name %></font></p>
         <p><%= link_to "詳細へ", user_path(user), class: "btn btn-lg btn-success" %></p>

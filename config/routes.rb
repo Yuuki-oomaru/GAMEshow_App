@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :users
   resources :games do
+    resources :game_comments, only:[:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
 

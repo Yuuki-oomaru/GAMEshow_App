@@ -2,6 +2,7 @@ class Game < ApplicationRecord
   belongs_to :user
   attachment :game_image
   has_many :favorites, dependent: :destroy
+  has_many :game_comments, dependent: :destroy
   acts_as_taggable_on :tags
 
   validates :title, presence: true
