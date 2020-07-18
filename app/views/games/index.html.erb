@@ -1,27 +1,55 @@
 <div class="container">
   <div class="row">
     <h2>新規投稿</h2>
-      <div class="col-lg-3">
-        <%= render 'games/new', game: @game %>
-      </div>
-
-      <div class="col-lg-9">
-        <h2>GAME一覧</h2>
-        <table class="table table-hover table-inverse">
-          <thead>
-				      <tr>
-					        <th></th>
-				        	<th>Image</th>
-					        <th>Title</th>
-                  <th>Contributor</th>
-                  <th>tags</th>
-				      </tr>
-		    	</thead>
-
-          <tbody class="list">
-              <%= render 'games/list', games: @games %>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-lg-3">
+      <%= form_with(model: @game, url: games_path(@game), method: :post, remote: true) do |f| %>
+      <div class="container">
+        <div class="row">
+          <div><%= f.label :image %></div>
+          <div class="col-sm-10 form-inline" style="padding: 3px;">
+            <%= f.attachment_field :game_image %>
+          </div>
+        </div>
+        <div class="row">
+          <div><%= f.label :title %></div>
+          <div class="col-sm-10 form-inline" style="padding: 3px;">
+            <%= f.text_field :title, class:"form-control input-sm",placeholder:"タイトル" %>
+          </div>
+        </div>
+        <div class="row">
+          <div><%= f.label :tags %></div>
+          <div class="col-sm-10 form-inline" style="padding: 3px;">
+            <%= f.text_field :tag_list, class:"form-control input-sm", value: @game.tag_list.join(','), placeholder:"タグ" %>
+          </div>
+        </div>
+        <div class="row">
+          <div><%= f.label :comment %></div>
+          <div class="col-sm-10 form-inline" style="padding: 3px;">
+            <%= f.text_area :body, rows:"3", class:"form-control input-sm", placeholder:"コメント" %>
+          </div>
+        </div>
+        <%= f.submit "送信", class:"btn btn-lg btn-success btn-base-1 mt-20" %>
+      <% end %>
     </div>
+  </div>
+
+  <div class="col-lg-9">
+    <h2>GAME一覧</h2>
+    <table class="table table-hover table-inverse">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Contributor</th>
+          <th>tags</th>
+        </tr>
+      </thead>
+
+      <tbody class="list">
+        <%= render 'games/list', games: @games %>
+      </tbody>
+    </table>
+  </div>
+ </div>
 </div>

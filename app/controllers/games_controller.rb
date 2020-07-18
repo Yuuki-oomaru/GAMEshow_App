@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+  before_action :authenticate_user!
   def index
     if params[:tag]
       @games = Game.tagged_with(params[:tag])
@@ -17,7 +18,11 @@ class GamesController < ApplicationController
     @games = Game.all
     @game = Game.new(game_params)
     @game.user_id = current_user.id
-    @game.save
+    if @game.save
+      flash.now[:comment] = "successfully."
+    else
+      render 'index'
+    end
   end
 
   def new
@@ -29,8 +34,11 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.update(game_params)
+    if @game.update(game_params)
     redirect_to game_path(@game.id), notice: "successfully updated !"
+   else
+     render 'edit'
+   end
   end
 
   def destroy

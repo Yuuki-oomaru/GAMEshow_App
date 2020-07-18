@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     rooms = current_user.entries.pluck(:room_id)  #Entryモデル内のカラムを一覧表示。

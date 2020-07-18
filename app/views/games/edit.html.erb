@@ -1,5 +1,6 @@
 <%= form_with(model: @game, method: :patch, local: true) do |f| %>
 <div class="container">
+  <%= render 'layouts/errors', model: @game %>
   <div class="row">
     <div class="col-sm-2"><%= f.label :image %></div>
     <div class="col-sm-10 form-inline" style="padding: 3px;">
@@ -9,7 +10,7 @@
   <div class="row">
     <div class="col-sm-2"><%= f.label :Title %></div>
     <div class="col-sm-10 form-inline" style="padding: 3px;">
-      <%= f.text_field :name, class:"form-control input-sm",placeholder:"タイトル" %>
+      <%= f.text_field :title, class:"form-control input-sm",placeholder:"タイトル" %>
     </div>
   </div>
   <div class="row">

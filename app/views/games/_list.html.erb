@@ -1,3 +1,4 @@
+<%= render 'layouts/errors', model: @game %>
 <% games.each do |game| %>
 <tr>
   <td></td>
@@ -7,12 +8,12 @@
      <% end %>
    </td>
 
+   <td><font size="4"><%= game.title %></font></td>
+   <td><font size="4"><%= game.user.name %></font></td>
+     <% game.tag_list.each do |tag| %>
    <td>
-     <font size="4"><%= game.title %></font>
+     <%= link_to tag, tag_path(tag),class: "badge badge-primary" %>
    </td>
-   <td>
-     <font size="4"><%= game.user.name %></font>
-   </td>
-   <td><%= raw(game.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></td>
+     <% end %>
 </tr>
 <% end %>
