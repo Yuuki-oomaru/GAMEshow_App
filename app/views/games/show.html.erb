@@ -35,18 +35,21 @@
     <%= render "comment", game_comments: @game_comments %>
   </div>
 
-  <h2>New Comment</h2>
-
   <%= form_with model:[@game,@game_comment],remote: true do |f| %>
-  <div class="field">
-    <%= f.text_area :comment, rows:"3", class:"form-control input-sm" %>
-    <%= f.label :rate, "星評価 " ,id: "e"%>
-    <%= f.hidden_field :rate, id: :review_star %>
-  </div>
-  <div class="field input-btn">
-    <%= f.submit "newcomment", class:"btn btn-warning btn-block" %>
-  </div>
-<% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>コメント</h3>
+      <%= f.text_area :comment, rows:"3", class:"form-control input-sm" %>
+      <div id="star">
+        <%= f.label :rate, "星評価 " ,id: "e"%>
+        <%= f.hidden_field :rate, id: :review_star %>
+      </div>
+    </div>
+
+    <div class="field input-btn">
+      <%= f.submit "newcomment", class:"btn btn-warning btn-block" %>
+    </div>
+  <% end %>
 </div>
 
 <script>
@@ -55,7 +58,7 @@ $('#star').raty({
   starOff:  '<%= asset_path('star-off.png') %>',
   starOn : '<%= asset_path('star-on.png') %>',
   starHalf: "<%= asset_path('star-half.png') %>",
-  scoreName: 'comment[rate]',
+  scoreName: 'game_comment[rate]',
   half: true //★の半分の入力を行う
 });
 </script>

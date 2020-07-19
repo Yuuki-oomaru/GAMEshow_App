@@ -13,6 +13,21 @@
       <span class="body-text">
         <%= game_comment.comment %>
       </span><br>
+      <h6  class="comment-item">評価：<%= game_comment.rate %>点</h6>
+     <!--星評価-->
+         <div id="star-rate-<%= game_comment.id %>"></div> <!-- # 繰り返し処理を実行してもidを一意に保てるようにidを埋め込む -->
+          <script>
+          $('#star-rate-<%= game_comment.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            half: true,
+            readOnly: true,
+            score: <%= game_comment.rate %>
+          });
+          </script>
+     <!--/星評価-->
       <div class="action-text">
         <%= game_comment.created_at.strftime('%Y/%m/%d') %>
         <% if game_comment.user == current_user %>
